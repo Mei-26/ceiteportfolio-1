@@ -24,6 +24,7 @@ if(isset($_POST['mode'],$_SESSION['id'],$_SESSION['college_id']) && $_SESSION['c
             $facultyContacts = $_POST['facultyContacts'];
             $facultyBirthday = $_POST['facultyBirthday'];
             $facultyType = $_POST['facultyType'];
+            $collegeDepartment = $_POST['collegeDepartment'];
             
             $facultyDepartment = $_POST['facultyDepartment'];
 
@@ -99,6 +100,7 @@ if(isset($_POST['mode'],$_SESSION['id'],$_SESSION['college_id']) && $_SESSION['c
                             $college_user_added_details = array(
                                 'user_id' => $user_id,
                                 'college_id' => $college_id,
+                                'department_origin' => $collegeDepartment
                                  );
 
                             if ($db->insertData('user_details', $data_details) 
@@ -113,7 +115,13 @@ if(isset($_POST['mode'],$_SESSION['id'],$_SESSION['college_id']) && $_SESSION['c
                                     {
                                         // DISABLE PAST SECRETARY
                                         $past_secretary_id = $db->getIdByColumnValue('college_officers','college_id',$college_id,'college_secretary_id');
-                                        $db->updateData('users',['status'=>1],['id'=>$past_secretary_id]);
+
+                                        $past_department_origin = $db->getIdByColumnValue('college_user_added','user_id',$past_secretary_id,'department_origin');
+                                        
+                                        $db->updateData('users',['role'=>'faculty'],['id'=>$past_secretary_id]);
+
+                                        $db->insertData('department_faculty',['department_id' => $past_department_origin,'faculty_id' => $past_secretary_id]);
+
                                         // UPDATE COLLEGE 
                                         $college_secretary = 
                                         [
@@ -126,8 +134,11 @@ if(isset($_POST['mode'],$_SESSION['id'],$_SESSION['college_id']) && $_SESSION['c
 
                                         // DISABLE PAST DEAN
                                         $past_dean_id = $db->getIdByColumnValue('college_officers','college_id',$college_id,'college_dean_id');
-                                        $db->updateData('users',['status'=>1],['id'=>$past_dean_id]);
-                                   
+                                        
+                                        $past_department_origin = $db->getIdByColumnValue('college_user_added','user_id',$past_dean_id,'department_origin');
+                                        $db->updateData('users',['role'=>'faculty'],['id'=>$past_dean_id]);
+
+                                        $db->insertData('department_faculty',['department_id' => $past_department_origin,'faculty_id' => $past_dean_id]);
                                         
                                         $college_dean = 
                                         [

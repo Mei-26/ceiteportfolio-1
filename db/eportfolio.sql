@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 07, 2025 at 06:39 PM
+-- Generation Time: Jan 08, 2025 at 08:34 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -100,7 +100,7 @@ INSERT INTO `college_officers` (`id`, `college_id`, `college_secretary_id`, `col
 (4, 14, 21, 20, 0),
 (5, 13, 1, 23, 0),
 (6, 15, 43, 44, 0),
-(7, 16, 62, 102, 0);
+(7, 16, 107, 105, 0);
 
 -- --------------------------------------------------------
 
@@ -112,58 +112,64 @@ CREATE TABLE `college_user_added` (
   `id` bigint(20) NOT NULL,
   `college_id` bigint(20) NOT NULL,
   `user_id` bigint(20) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0,
+  `department_origin` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `college_user_added`
 --
 
-INSERT INTO `college_user_added` (`id`, `college_id`, `user_id`, `status`) VALUES
-(1, 15, 46, 0),
-(2, 15, 47, 0),
-(3, 15, 48, 0),
-(4, 15, 49, 0),
-(5, 15, 50, 0),
-(6, 15, 51, 0),
-(7, 15, 52, 0),
-(8, 15, 53, 0),
-(9, 15, 54, 0),
-(10, 15, 55, 0),
-(11, 15, 56, 0),
-(12, 15, 57, 0),
-(13, 15, 59, 0),
-(14, 13, 60, 0),
-(15, 13, 61, 0),
-(16, 13, 62, 0),
-(17, 16, 63, 0),
-(18, 16, 64, 0),
-(19, 16, 65, 0),
-(20, 16, 66, 0),
-(21, 16, 67, 0),
-(22, 16, 68, 0),
-(23, 16, 69, 0),
-(24, 16, 70, 0),
-(25, 16, 71, 0),
-(26, 16, 72, 0),
-(27, 16, 73, 0),
-(28, 16, 74, 0),
-(29, 16, 75, 0),
-(30, 16, 76, 0),
-(31, 16, 77, 0),
-(32, 16, 78, 0),
-(33, 16, 79, 0),
-(34, 16, 80, 0),
-(35, 16, 81, 0),
-(36, 16, 88, 0),
-(37, 16, 89, 0),
-(38, 16, 90, 0),
-(39, 16, 91, 0),
-(40, 16, 92, 0),
-(41, 16, 93, 0),
-(42, 16, 94, 0),
-(43, 16, 95, 0),
-(44, 16, 102, 0);
+INSERT INTO `college_user_added` (`id`, `college_id`, `user_id`, `status`, `department_origin`) VALUES
+(1, 15, 46, 0, 0),
+(2, 15, 47, 0, 0),
+(3, 15, 48, 0, 0),
+(4, 15, 49, 0, 0),
+(5, 15, 50, 0, 0),
+(6, 15, 51, 0, 0),
+(7, 15, 52, 0, 0),
+(8, 15, 53, 0, 0),
+(9, 15, 54, 0, 0),
+(10, 15, 55, 0, 0),
+(11, 15, 56, 0, 0),
+(12, 15, 57, 0, 0),
+(13, 15, 59, 0, 0),
+(14, 13, 60, 0, 0),
+(15, 13, 61, 0, 0),
+(16, 13, 62, 0, 0),
+(17, 16, 63, 0, 0),
+(18, 16, 64, 0, 0),
+(19, 16, 65, 0, 0),
+(20, 16, 66, 0, 0),
+(21, 16, 67, 0, 0),
+(22, 16, 68, 0, 0),
+(23, 16, 69, 0, 0),
+(24, 16, 70, 0, 0),
+(25, 16, 71, 0, 0),
+(26, 16, 72, 0, 0),
+(27, 16, 73, 0, 0),
+(28, 16, 74, 0, 0),
+(29, 16, 75, 0, 0),
+(30, 16, 76, 0, 0),
+(31, 16, 77, 0, 0),
+(32, 16, 78, 0, 0),
+(33, 16, 79, 0, 0),
+(34, 16, 80, 0, 0),
+(35, 16, 81, 0, 0),
+(36, 16, 88, 0, 0),
+(37, 16, 89, 0, 0),
+(38, 16, 90, 0, 0),
+(39, 16, 91, 0, 0),
+(40, 16, 92, 0, 0),
+(41, 16, 93, 0, 0),
+(42, 16, 94, 0, 0),
+(43, 16, 95, 0, 0),
+(44, 16, 102, 0, 0),
+(45, 16, 103, 0, 20),
+(46, 16, 104, 0, 20),
+(47, 16, 105, 0, 20),
+(48, 16, 106, 0, 15),
+(49, 16, 107, 0, 14);
 
 -- --------------------------------------------------------
 
@@ -394,7 +400,11 @@ INSERT INTO `department_faculty` (`id`, `department_id`, `faculty_id`, `status`)
 (22, 11, 92, 0),
 (23, 11, 93, 0),
 (24, 11, 94, 0),
-(25, 11, 95, 0);
+(25, 11, 95, 0),
+(26, 20, 103, 0),
+(27, 20, 104, 0),
+(28, 0, 62, 0),
+(29, 15, 106, 0);
 
 -- --------------------------------------------------------
 
@@ -795,7 +805,7 @@ INSERT INTO `users` (`id`, `employment_id`, `email`, `password`, `status`, `role
 (59, '7234234234', '7234234234@cvsu.edu.ph', '$2y$10$I9X/eQgH5yic9HOngocWIOY5wFbNYSGeSwNfTvvwVTUe4CbHsTOiS', 0, 'department_chairperson', 1, 'Regular', ''),
 (60, '202105206', 'testing@cvsu.edu.ph', '$2y$10$a5nD1LVEJPO4Lrcjf6zZg.8lVQy5knoFKfcqnmnVbLVfukTllpzAG', 1, 'college_dean', 0, 'Contractual', ''),
 (61, '202105203', 'may@cvsu.edu.ph', '$2y$10$gJFAn41Zj.1B4Asv9Kv8ouOIrwLZayePG0OWYT5xUUQZmQiREiv3S', 0, 'faculty', 1, 'Regular', ''),
-(62, '202105204', 'irinemay.ompaling@cvsu.edu.ph', '$2y$10$8HxcMH7.5kNKDXG.3ISNl..AY8nkG6nlWTEPe9IULATvSlfnC/08y', 0, 'college_secretary', 1, 'Regular', 'BiNopZ'),
+(62, '202105204', 'irinemay.ompaling@cvsu.edu.ph', '$2y$10$8HxcMH7.5kNKDXG.3ISNl..AY8nkG6nlWTEPe9IULATvSlfnC/08y', 0, 'faculty', 1, 'Regular', 'BiNopZ'),
 (63, '10000001', 'roberto.garcia@cvsu.edu.ph', '$2y$10$eJ554gI35QEB6FKbC7Ih3.cDk2ZdVAdDfsMr9.g3AB3bgpMb3qZym', 0, 'department_chairperson', 1, 'Regular', ''),
 (64, '20000001', 'jennifer.perez@cvsu.edu.ph', '$2y$10$Al03jrP5Frk9QBy8RbUUMe/NvOIb4gnYCRhfSeGjiTRbfI8dWpDkq', 0, 'department_secretary', 1, 'Regular', ''),
 (65, '10000002', 'miguel.torres@cvsu.edu.ph', '$2y$10$EEv.2YKx2a9oFRCkO.NDj.a/PawRA6EUbL6oPO.H6JeDnD7KYh3s6', 0, 'department_chairperson', 1, 'Contractual', ''),
@@ -823,7 +833,12 @@ INSERT INTO `users` (`id`, `employment_id`, `email`, `password`, `status`, `role
 (93, '33500001', 'arceta@cvsu.edu.ph', '$2y$10$2IxRRTKq46hzR0sJBpCoauHZZetTZ4EV07J5PO2SJkuhXDQ0ZV0mS', 1, 'faculty', 0, 'Regular', ''),
 (94, '33600001', 'vergara@cvsu.edu.ph', '$2y$10$aY5B1xFileFtClRtv1Aove5KId1SV1yQ/XCGEGnojJ0qZ7NS/rPQG', 0, 'faculty', 0, 'Contractual', ''),
 (95, '33700001', 'ricalde@cvsu.edu.ph', '$2y$10$0MldaZNt1HBewOOZ/GasUOmcLpcUlWx4xDi8gwSoDd.SWWnBOtc.S', 0, 'faculty', 0, 'Contractual', ''),
-(102, '2021053100', 'zyrellrezanszzo@cvsu.edu.ph', '$2y$10$GRIyYlZhi.4buQuGF0zOHu7m9mudARqz9kSTRhUjHJrBkY6kZch.i', 0, 'college_dean', 0, 'Regular', '');
+(102, '2021053100', 'zyrellrezanszzo@cvsu.edu.ph', '$2y$10$GRIyYlZhi.4buQuGF0zOHu7m9mudARqz9kSTRhUjHJrBkY6kZch.i', 1, 'college_dean', 0, 'Regular', ''),
+(103, '0990990', 'adsadS@cvsu.edu.ph', '$2y$10$B37m4WuMcA0VVAotiZ/7P.AwQBP9Mp4o8IVZNIPVGvyXk89sP0OaO', 0, 'faculty', 0, 'Regular', ''),
+(104, '88191293', 'testerzz@cvsu.edu.ph', '$2y$10$2T9/yHokIuIZqa4Dq8wCpuiZlJmxmIRrhrT.R3dG4D5SWR21GlIIa', 0, 'faculty', 0, 'Regular', ''),
+(105, '0910239123', 'asdasd@cvsu.edu.ph', '$2y$10$eZrn3tjmgxF6TqZqJGXvfeWTfo4/56p6iaL6eOhm2BN00En5x2V2G', 0, 'college_dean', 0, 'Regular', ''),
+(106, '00912381283', 'drasdzxczxc@cvsu.edu.ph', '$2y$10$B0OGPQcMchbI0Qz0QA.I6OGrGw3nDavqARfXD8G3oFkUsM2JPHoGq', 0, 'faculty', 0, 'Regular', ''),
+(107, '0009912931923', 't@cvsu.edu.ph', '$2y$10$Je/p0rDV9d.E8.lH.57j8u.NyoQBAmHRatSbiDUXegR2Vt61Zmo/6', 0, 'college_secretary', 0, 'Regular', '');
 
 -- --------------------------------------------------------
 
@@ -904,7 +919,12 @@ INSERT INTO `user_details` (`user_id`, `name`, `address`, `birthday`, `phone`, `
 (93, 'Maraiah Queen Arceta', 'Manila, Philippines', '2005-02-02', '09004101122', 'Programming', '67583133e3c8b-460449455_1211811546729481_1744740225868258300_n (1).jpg'),
 (94, 'Maria Niccolet Vergara', 'Manila, Philippines', '2000-03-15', '09114101122', 'Programming', '6758317c1ddb7-460476196_1211811466729489_1737615108033501579_n.jpg'),
 (95, 'Mary Loi Yves Ricalde', 'Makati, Philippines', '2002-04-06', '09674102822', 'Modeling', '675831c193fce-460468863_1211811536729482_4797097431543960371_n.jpg'),
-(102, 'Zy Rezano', 'Manila, Philippines', '2024-12-10', '09674102811', 'Programming', '675852345ae7c-bts.jpg');
+(102, 'Zy Rezano', 'Manila, Philippines', '2024-12-10', '09674102811', 'Programming', '675852345ae7c-bts.jpg'),
+(103, 'testzxc', 'tester', '2007-01-01', '09123456789', 'tester', '677ecfc433003-a.jpg'),
+(104, 'testerzzqwe', 'zz', '2007-01-01', '09123456789', 'zz', '677ed0ff9b706-no_image.jpg'),
+(105, 'tester2', 'te', '2006-12-31', '09123456789', 'te', '677ed1b3c5f2f-no_image.jpg'),
+(106, 'Dr tester', 'tss', '2007-01-01', '09123123552', 'tester', '677ed2c9d5453-no_image.jpg'),
+(107, 't', 'w', '2007-01-04', '09123456789', 'w', '677ed2fe3f374-no_image.jpg');
 
 --
 -- Indexes for dumped tables
@@ -1049,7 +1069,7 @@ ALTER TABLE `college_officers`
 -- AUTO_INCREMENT for table `college_user_added`
 --
 ALTER TABLE `college_user_added`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `course`
@@ -1085,7 +1105,7 @@ ALTER TABLE `department_details`
 -- AUTO_INCREMENT for table `department_faculty`
 --
 ALTER TABLE `department_faculty`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `faculty_subject`
@@ -1127,7 +1147,7 @@ ALTER TABLE `subject`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- Constraints for dumped tables

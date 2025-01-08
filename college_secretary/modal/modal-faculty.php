@@ -97,10 +97,32 @@
           <option value="college_dean">College Dean</option>
           <option value="college_secretary">College Secretary</option>
           <option value="department_secretary">Department Secretary</option>
-          <option value="department_chairperson">Department Chair person</option>
+          <option value="department_chairperson">Department Chairperson</option>
         </select>
       </div>
+    <!-- Faculty Department Input -->
+    <div class="mb-4" id="college_dep">
+            <label for="collegeDepartment" class="block text-gray-700 mb-2">Department</label>
+            <select id="collegeDepartment"
+            name="collegeDepartment" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-green-500 ">
+              <option value="">Select Department</option>
+              <?php 
+               $rows = $db->getAllRowsFromTable('department_details');
+               $count = 0;
+                   foreach ($rows as $row) {
+                       $id = $row['id'];
+                       $depatment_college = $row['depatment_college'];
+                       $department_name = $row['department_name'];
+                      
+                       if($my_college_id!=$depatment_college){
+                           continue;
+                       }
+                       echo '<option value="'.$id.'">'.$department_name.'</option>';
 
+                    }
+              ?>
+            </select>
+          </div>
         <!-- Faculty Departments -->
         <div class="mb-4" id="faculty_dep">
         <label for="facultyDepartment" class="block text-gray-700 mb-2">Department</label>
@@ -209,12 +231,14 @@
 
 <script>
   $('#faculty_dep').hide()
+  $('#college_dep').show()
   $('#facultyPosition').change(function(){
       var position = $(this).val();
       $('#faculty_dep').val('')
       if(position === "department_secretary" || position === "department_chairperson")
       {
         $('#faculty_dep').show()
+        $('#college_dep').hide()
 
         $.ajax({
               url: 'controller/get_department.php', // Replace with your server endpoint URL
@@ -240,6 +264,7 @@
 
       }else{
         $('#faculty_dep').hide()
+       $('#college_dep').show();
       }
   });
 </script>
