@@ -9,7 +9,7 @@ class DatabaseHandler {
         // Set your database connection parameters here
         $dbHost = 'ceiteportfolio.mysql.database.azure.com';
         $dbPort = '3306';
-        $dbName = 'eportfolio';
+        $dbName = 'dbeportfolio';
         $dbUser = 'user';
         $dbPassword = 'AzureUser123';
 
