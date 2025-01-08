@@ -36,7 +36,7 @@ class DatabaseHandler {
         }
     }
 
-  public function getSubject_SectionYearSemLevel($semester,$schoolyear) {
+public function getSubject_SectionYearSemLevel($semester,$schoolyear) {
     try {
         $stmt = $this->pdo->prepare("SELECT a.*, MIN(d.yearlevel) as yearlevel, MIN(d.semester) as semester, MIN(d.schoolyear) as schoolyear FROM `subject` as a 
         JOIN course as b 
