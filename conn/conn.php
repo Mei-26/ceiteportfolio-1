@@ -36,34 +36,34 @@ class DatabaseHandler {
         }
     }
 
-    public function getSubject_SectionYearSemLevel($semester,$schoolyear) {
-        try {
-            $stmt = $this->pdo->prepare("SELECT a.*,d.yearlevel,d.semester,d.schoolyear FROM `subject` as a 
-            JOIN course as b 
-            ON a.course_id = b.id
-            JOIN department_details as c 
-            ON b.department_id = c.id
-            JOIN deparment_section as d 
-            ON c.id = d.department_id
-            WHERE a.status = 0 AND b.status = 0 AND c.status = 0 AND d.status = 0
-                AND d.semester = :semester
-                AND d.schoolyear = :schoolyear
-            GROUP BY a.id
-                ");
+  public function getSubject_SectionYearSemLevel($semester,$schoolyear) {
+    try {
+        $stmt = $this->pdo->prepare("SELECT a.*, MIN(d.yearlevel) as yearlevel, MIN(d.semester) as semester, MIN(d.schoolyear) as schoolyear FROM `subject` as a 
+        JOIN course as b 
+        ON a.course_id = b.id
+        JOIN department_details as c 
+        ON b.department_id = c.id
+        JOIN deparment_section as d 
+        ON c.id = d.department_id
+        WHERE a.status = 0 AND b.status = 0 AND c.status = 0 AND d.status = 0
+            AND d.semester = :semester
+            AND d.schoolyear = :schoolyear
+        GROUP BY a.id
+        ");
 
-            $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
-            $stmt->bindParam(':schoolyear', $schoolyear, PDO::PARAM_INT);
-            
-            $stmt->execute();
+        $stmt->bindParam(':semester', $semester, PDO::PARAM_INT);
+        $stmt->bindParam(':schoolyear', $schoolyear, PDO::PARAM_INT);
+        
+        $stmt->execute();
     
 
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        } catch (PDOException $e) {
-            // Handle query errors
-            echo "Query failed: " . $e->getMessage();
-        }
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    } catch (PDOException $e) {
+        // Handle query errors
+        echo "Query failed: " . $e->getMessage();
     }
+}
 
     public function getSections() {
         try {
