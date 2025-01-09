@@ -20,11 +20,13 @@ if (isset($_POST['faculty_id'])) {
 
             $past_selected_role_id = $db->getIdByColumnValue('college_officers','college_id',$college_id,'college_dean_id');
 
+            $past_selected_department_origin = $db->getIdByColumnValue('college_user_added','user_id',$past_selected_role_id,'department_origin');
+            
             // UPDATE IT FIRST TO FACULTY
 
               $db->updateData('users', ['role' => 'faculty'], ['id' => $past_selected_role_id]);
             //   THEN ADD TO LIST OF FACULTY
-              $db->insertData('department_faculty', ['department_id' => $department_id , 'faculty_id' => $past_selected_role_id]);
+              $db->insertData('department_faculty', ['department_id' => $past_selected_department_origin , 'faculty_id' => $past_selected_role_id]);
 
 
 
@@ -35,10 +37,12 @@ if (isset($_POST['faculty_id'])) {
 
             $past_selected_role_id = $db->getIdByColumnValue('college_officers','college_id',$college_id,'college_secretary_id');
             // UPDATE IT FIRST TO FACULTY
+            $past_selected_department_origin = $db->getIdByColumnValue('college_user_added','user_id',$past_selected_role_id,'department_origin');
+
 
               $db->updateData('users', ['role' => 'faculty'], ['id' => $past_selected_role_id]);
             //   THEN ADD TO LIST OF FACULTY
-              $db->insertData('department_faculty', ['department_id' => $department_id , 'faculty_id' => $past_selected_role_id]);
+              $db->insertData('department_faculty', ['department_id' => $past_selected_department_origin , 'faculty_id' => $past_selected_role_id]);
 
 
 
